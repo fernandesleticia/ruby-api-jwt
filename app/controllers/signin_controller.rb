@@ -24,4 +24,10 @@ class SigninController < ApplicationController
     session.flush_by_access_payload
     render json: :ok
   end
+
+  private
+
+  def not_found
+    render json: { error: "Cannot find email/password combination" }, status: :not_found
+  end
 end
