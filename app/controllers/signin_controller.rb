@@ -18,4 +18,10 @@ class SigninController < ApplicationController
       not_authorized
     end
   end
+
+  def destroy
+    session = JWTSessions::Sessions.new(payload: payload)
+    session.flush_by_access_payload
+    render json: :ok
+  end
 end
